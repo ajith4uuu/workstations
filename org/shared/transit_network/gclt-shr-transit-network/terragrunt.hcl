@@ -4,7 +4,7 @@ locals {
 }
 
 terraform {
-  source = "github.com/colt-net/terraform-modules//stacks/project?ref=v1.0.0"
+  source = "github.com/ajith4uuu/terraform-modules//stacks/project"
 }
 
 # Include all settings from the root terragrunt.hcl file
@@ -26,7 +26,7 @@ inputs = {
 
   # Labels
   labels = {
-    email       = "platform.support@colt.net"
+    email       = "editorial@indexofscience.com"
     costid      = ""
     live        = "yes"
     environment = "shr"

@@ -4,7 +4,7 @@ locals {
 }
 
 terraform {
-  source = "github.com/colt-net/terraform-modules//stacks/interconnect?ref=v1.0.7"
+  source = "github.com/ajith4uuu/terraform-modules//stacks/interconnect"
 }
 
 # Include all settings from the root terragrunt.hcl file
@@ -13,13 +13,13 @@ include {
 }
 
 dependency "parent" {
-  config_path = "../../../gclt-shr-transit-network/"
+  config_path = "../../../tfde-shr-transit-network/"
   mock_outputs = {
     project = {
-      project_id = "gclt-shr-transit-network"
+      project_id = "tfde-shr-transit-network"
     }
     labels = {
-      resource_name = "gclt-shr-transit-network"
+      resource_name = "tfde-shr-transit-network"
     }
   }
 }
@@ -37,7 +37,7 @@ dependency "prv_srv" {
 # These are the variables we have to pass in to use the module specified in the terragrunt configuration above
 inputs = {
   labels = {
-    email       = "platform.support@colt.net"
+    email       = "editorial@indexofscience.com"
     costid      = ""
     live        = "yes"
     environment = "shr"

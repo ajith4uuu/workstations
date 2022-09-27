@@ -4,7 +4,7 @@ locals {
 }
 
 terraform {
-  source = "github.com/colt-net/terraform-modules//stacks/vpc_network?ref=v1.0.0"
+  source = "github.com/ajith4uuu/terraform-modules//stacks/vpc_network"
 }
 
 # Include all settings from the root terragrunt.hcl file
@@ -13,13 +13,13 @@ include {
 }
 
 dependency "parent" {
-  config_path = "../../gclt-shr-transit-network/"
+  config_path = "../../tfde-shr-transit-network/"
   mock_outputs = {
     project = {
-      project_id = "gclt-shr-transit-network"
+      project_id = "tfde-shr-transit-network"
     }
     labels = {
-      resource_name = "gclt-shr-transit-network"
+      resource_name = "tfde-shr-transit-network"
     }
   }
 }
