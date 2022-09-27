@@ -1,0 +1,48 @@
+---
+timeout: 1800s
+steps:
+  # pre-commit checks
+  - name: eu.gcr.io/$PROJECT_ID/shr-deploy-terraform:v1
+    entrypoint: /bin/bash
+    args:
+      - '-eEuo'
+      - 'pipefail'
+      - '-c'
+      - |-
+        sudo chown -R developer:developer /workspace
+        sudo chown -R developer:developer /builder/home
+        gcloud secrets versions access latest --secret=${_GITHUB_TOKEN_ID} --format='get(payload.data)' | tr '_-' '/+' | base64 -d | tr -d '\n' > ~/token.txt
+        echo '[url "https://oauth2:'$(cat ~/token.txt)'@github.com"]' > ~/.gitconfig
+        echo '        insteadOf = https://github.com' >> ~/.gitconfig
+        git init
+        git checkout -b ${BRANCH_NAME}
+        git add --all
+        gcloud config set auth/impersonate_service_account ${_TF_SA_EMAIL}
+        pre-commit run --all-files --show-diff-on-failure --color never
+  # terragrunt init and validate
+  - name: eu.gcr.io/$PROJECT_ID/shr-deploy-terraform:v1
+    entrypoint: /bin/bash
+    args:
+      - '-eEuo'
+      - 'pipefail'
+      - '-c'
+      - |-
+        gcloud config set auth/impersonate_service_account ${_TF_SA_EMAIL}
+        terragrunt run-all init --terragrunt-non-interactive -input=false -no-color
+        terragrunt run-all validate -no-color
+  # terragrunt plan
+  - name: eu.gcr.io/$PROJECT_ID/shr-deploy-terraform:v1
+    entrypoint: /bin/bash
+    args:
+      - '-eEuo'
+      - 'pipefail'
+      - '-c'
+      - |-
+        gcloud config set auth/impersonate_service_account ${_TF_SA_EMAIL}
+        terragrunt run-all plan --terragrunt-non-interactive -input=false -lock-timeout=60s -no-color
+options:
+  machineType: 'E2_HIGHCPU_8'
+artifacts:
+  objects:
+    location: 'gs://${_ARTIFACT_BUCKET_NAME}/terraform/cloudbuild/plan/${BUILD_ID}'
+    paths: ['cloudbuild-tg-plan.yaml']

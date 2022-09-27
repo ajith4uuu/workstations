@@ -1,0 +1,35 @@
+{
+  "name": "AEF Dev Container - this container should already exist and it is built by bootstrap",
+  "image": "eu.gcr.io/gclt-shr-terraform-4df7/shr-deploy-terraform:latest",
+  "containerUser": "developer",
+
+  "settings": {
+    "terminal.integrated.defaultProfile.linux": "bash",
+    "terminal.integrated.profiles.linux": {
+      "bash": {
+        "path": "/bin/bash"
+      }
+    }
+  },
+
+  "extensions": [
+    "bierner.markdown-preview-github-styles",
+    "donjayamanne.githistory",
+    "ms-python.python",
+    "ms-azuretools.vscode-docker",
+    "HashiCorp.terraform",
+    "EditorConfig.EditorConfig",
+    "stkb.rewrap"
+  ],
+
+  "runArgs": [
+    "--init"
+  ],
+
+  "mounts": [
+    "source=/var/run/docker.sock,target=/var/run/docker.sock,type=bind",
+    "source=${localEnv:HOME}${localEnv:USERPROFILE}/.config/gcloud,target=/home/developer/.config/gcloud,type=bind"
+  ],
+
+  "postCreateCommand": "sudo apt-get update && sudo apt-get install -y google-cloud-sdk-cloud-build-local && pre-commit install"
+}

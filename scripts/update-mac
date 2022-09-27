@@ -1,0 +1,17 @@
+#!/usr/bin/env bash
+
+# https://vaneyckt.io/posts/safer_bash_scripts_with_set_euxo_pipefail/
+set -eux
+
+# Update dependencies
+brew update
+brew upgrade git
+brew cask upgrade google-cloud-sdk
+brew cask upgrade docker
+brew cask upgrade visual-studio-code
+
+# Smoke test
+gcloud --version
+git --version
+docker --version
+code --version
