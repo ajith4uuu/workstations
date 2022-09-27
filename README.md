@@ -1,7 +1,6 @@
 # General description
 
-The purpose of this IaC is to get you started on setting up greenfield AEF
-(Appsbroker Enterprise Framework) for a customer which does not have any GCP
+The purpose of this IaC is to get you started on setting up Framework for a customer which does not have any GCP
 presence.
 
 ## Deployment steps
@@ -74,5 +73,5 @@ So, just to get you started, follow these steps:
 - [GCP folder setup with Terragrunt](org/README.md)
 
 <!-- markdown-link-check-disable -->
-[1]: https://github.com/colt-net/terraform-modules
+[1]: https://github.com/ajith4uuu/terraform-modules
 <!-- markdown-link-check-enable -->

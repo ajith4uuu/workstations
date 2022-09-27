@@ -1,6 +1,6 @@
 locals {
-  org_id           = "797721931143"
-  billing_account  = "0138FE-468F00-64F90B"
+  org_id           = "310155770208"
+  billing_account  = "01DA77-324950-976951"
   bucket_location  = "EU"
   package_versions = jsondecode(file("${path.module}/cloudbuild_builder/packageVersions.json"))
   replica_locations_for_secrets = toset([
@@ -23,16 +23,16 @@ resource "google_folder" "bootstrap" {
   parent       = google_folder.shared.id
 }
 
-# Create project on sub-folder level (eg. /shared/bootstrap/gclt-shr-terraform-XXXX)
+# Create project on sub-folder level (eg. /shared/bootstrap/gcp-shr-terraform-XXXX)
 module "project" {
-  source = "github.com/colt-net/terraform-modules//stacks/project?ref=v1.0.0"
+  source = "github.com/ajith4uuu/terraform-modules//stacks/project?ref=v1.0.0"
 
   folder_id       = google_folder.bootstrap.id
   billing_account = local.billing_account
 
-  prefix_id = "gclt"
+  prefix_id = "gcp"
   labels = {
-    email          = "platform.support@colt.net"
+    email          = "editorial@indexofscience.com"
     costid         = ""
     live           = "yes"
     environment    = "shr"
@@ -181,8 +181,8 @@ resource "google_cloudbuild_trigger" "master" {
   description = "terragrunt apply on push to master"
 
   github {
-    owner = "colt-net"
-    name  = "cloudfoundation-iac"
+    owner = "ajith4uuu"
+    name  = "cloudfoundation-iac-main"
     push {
       branch = "^main$"
     }
@@ -205,8 +205,8 @@ resource "google_cloudbuild_trigger" "pull_requests" {
   description = "terragrunt plan on pull requests"
 
   github {
-    owner = "colt-net"
-    name  = "cloudfoundation-iac"
+    owner = "ajith4uuu"
+    name  = "cloudfoundation-iac-main"
     pull_request {
       branch = "^main$"
     }
