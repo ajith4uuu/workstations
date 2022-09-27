@@ -4,7 +4,7 @@ locals {
 }
 
 terraform {
-  source = "github.com/colt-net/terraform-modules//stacks/iam_org?ref=v1.0.14"
+  source = "github.com/ajith4uuu/terraform-modules//stacks/iam_org"
 }
 
 # Include all settings from the root terragrunt.hcl file
@@ -16,35 +16,31 @@ include {
 inputs = {
 
   org_admin_members = [
-    "group:gcp-orgadmins@colt.net",
+    "group:gcp-orgadmins@indexofscience.com",
   ]
 
   sec_admin_members = [
-    "group:gcp-secadmins@colt.net",
+    "group:gcp-secadmins@indexofscience.com",
   ]
 
   billing_admin_members = [
-    "group:gcp-billingadmin@colt.net",
+    "group:gcp-billingadmin@indexofscience.com",
   ]
 
   billing_user_members = [
-    "group:gcp-billingusers@colt.net",
+    "group:gcp-billingusers@indexofscience.com",
   ]
 
   network_admin_members = [
-    "group:gcp-netadmins@colt.net",
+    "group:gcp-netadmins@indexofscience.com",
   ]
 
   support_account_admin_members = [
-    "user:ritesh.manktala@colt.net",
+    "user:ritesh.manktala@indexofscience.com",
   ]
 
   tech_support_editor_members = [
-    "user:ritesh.manktala@colt.net",
-    "user:akhilesh.tewari@colt.net",
-    "user:kiran.verma@colt.net",
-    "user:anugrah.gupta@colt.net",
-    "user:raguraman.ganesan@colt.net",
+    "user:ajith@indexofscience.com",
   ]
 
 }
