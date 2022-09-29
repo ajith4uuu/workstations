@@ -9,7 +9,7 @@ remote_state {
   backend = "gcs"
   # Same state bucket for for all envs - resources are created in bootstrap folder
   config = {
-    bucket = "tfde-shr-terraform-state"
+    bucket = "gcptfde-shr-terraform-state"
     prefix = "org/${path_relative_to_include()}/terraform.tfstate"
   }
   generate = {
@@ -34,7 +34,7 @@ provider "google" {
 
 data "google_service_account_access_token" "default" {
   provider               = google.impersonate
-  target_service_account = "tfde-shr-terraform@tfde-shr-terraform-6378.iam.gserviceaccount.com"
+  target_service_account = "gcptfde-shr-terraform@gcptfde-shr-terraform-fa93.iam.gserviceaccount.com"
   scopes                 = ["userinfo-email", "cloud-platform"]
   lifetime               = "600s"
 }
