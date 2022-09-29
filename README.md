@@ -41,7 +41,7 @@ config](./.devcontainer/devcontainer.json)
 All of the developed IaC is heavily using Terraform modules and stacks.
 Modules are the smaller units used in order to create one generic resource (or
 combination of resources but for the same purpose).
-Stacks are a combination of modules for creating AEF specific resources in
+Stacks are a combination of modules for creating specific resources in
 order to achieve a higher level of purpose (like a project with labels, VPN
 tunnels between two projects, etc.).
 Both, the modules and the stacks are placed in [second][1] repo.
