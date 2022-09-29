@@ -63,13 +63,13 @@ locals {
 # where terraform_remote_state data sources are placed directly into the modules.
 inputs = {
 
-  billing_account = "01DA77-324950-976951"
-  org_id          = "310155770208"
+  billing_account = "01338C-9CB85F-DBB789"
+  org_id          = "1055461433466"
   prefix_id       = "tfde"
 
   policy_allowed_domain_ids = [
     # Cloud Identity Customer ID
-    "C0103t1jf"
+    "C00kanagm"
   ]
 
 }
