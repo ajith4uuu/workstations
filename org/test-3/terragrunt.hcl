@@ -15,6 +15,6 @@ include {
 # These are the variables we have to pass in to use the module specified in the terragrunt configuration above
 inputs = {
 
-  folder_name = "test-3"
+  folder_name = "test-2"
 
 }
